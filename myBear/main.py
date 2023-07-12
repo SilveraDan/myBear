@@ -9,9 +9,11 @@ from Series import Series
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     # Création d'une Series
-    data = [100, 25, 32, 118, 24, 65]
+    data = [100, 25, 32, None, 24, 65]
     series = Series(data, "MySeries")
 
+    #missing values
+    print(f"missing values : {series.missing_values}")
     # iloc
     val = series.iloc[2:5]
     print(f"Valeur à l'index 2 : {val}")
