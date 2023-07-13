@@ -42,8 +42,20 @@ if __name__ == '__main__':
     print(f"test1 : {dataframe.listSeries[0].name}")
 
     #test2 DataFrame constructeur avec liste colonnes et valeur
-    dataframe = DataFrame(["a", "b"],[data, data2])
-    print(f"test2 : {dataframe.listSeries[0].data}")
+    #dataframe = DataFrame(["col1", "col2"],[[1,2],[3,4]])
+    #print(f"test1 : {dataframe.listSeries[0].name}")
 
+    # max dataframe
     print(dataframe.max())
+
+    # min dataframe
+    print(dataframe.min())
+
+    #print datafarm
+    print(" DATAFRAME ")
+    for line in dataframe.iloc:
+        print(line)
+    # iloc
+    print(dataframe.iloc[5][1])
+
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
