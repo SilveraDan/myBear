@@ -51,11 +51,10 @@ if __name__ == '__main__':
     # min dataframe
     print(dataframe.min())
 
-    #print datafarm
-    print(" DATAFRAME ")
-    for line in dataframe.iloc:
-        print(line)
-    # iloc
-    print(dataframe.iloc[5][1])
+    #print dataframe
+    print(dataframe)
+
+    # test iloc
+    print(dataframe.iloc[5,0:2])
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
