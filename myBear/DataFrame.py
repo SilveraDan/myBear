@@ -10,6 +10,7 @@ class DataFrame:
         else:
             self.listSeries = []
 
+
     def from_list_series(self, listSeries):
         if len(listSeries) > 0:
             size = listSeries[0].size
@@ -29,3 +30,9 @@ class DataFrame:
         else:
             print("Les listes ne sont pas de la même taille")
 
+    def max(self):
+        max = self.listSeries[0].max()
+        for series in self.listSeries:
+            if max <= series.max():
+                max = series.max()
+        return max

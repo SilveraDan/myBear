@@ -39,10 +39,11 @@ if __name__ == '__main__':
 
     #test1 DataFrame constructeur avec liste de Series
     dataframe = DataFrame([series,series2])
-    print(f"test1 : {dataframe.listSeries[0].data}")
+    print(f"test1 : {dataframe.listSeries[0].name}")
 
     #test2 DataFrame constructeur avec liste colonnes et valeur
     dataframe = DataFrame(["a", "b"],[data, data2])
     print(f"test2 : {dataframe.listSeries[0].data}")
 
+    print(dataframe.max())
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
