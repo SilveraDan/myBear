@@ -42,8 +42,8 @@ if __name__ == '__main__':
     print(f"test1 : {dataframe.listSeries[0].name}")
 
     #test2 DataFrame constructeur avec liste colonnes et valeur
-    #dataframe = DataFrame(["col1", "col2"],[[1,2],[3,4]])
-    #print(f"test1 : {dataframe.listSeries[0].name}")
+    dataframe = DataFrame(["col1", "col2"],[[1,2],[3,4]])
+    print(f"test1 : {dataframe.listSeries[0].name}")
 
     # max dataframe
     print(dataframe.max())
@@ -55,6 +55,6 @@ if __name__ == '__main__':
     print(dataframe)
 
     # test iloc
-    print(dataframe.iloc[5,0:2])
+    print(dataframe.iloc[1,0:2])
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

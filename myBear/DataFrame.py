@@ -20,18 +20,7 @@ class DataFrame:
             size = listSeries[0].size
             if all(series.size == size for series in listSeries):
                 self.listSeries = listSeries
-                #initialise une dataframe de 0
-                self.tab = [[0] * len(listSeries) for _ in range(size)]
-                #ajoute le nom des colonnes
-                for i in range(len(listSeries)):
-                    self.tab[0][i] = listSeries[i].name
-                #ajoute les valeurs à chaque colonne
-                for i in range(1,size):
-                    l = []
-                    for y in range(len(listSeries)):
-                        l.append(listSeries[y].data[i - 1])
-                    if i != size:
-                        self.tab[i] = l
+                self.initTab(size,len(listSeries))
             else:
                 print("Les listes ne sont pas de la même taille")
         else:
@@ -43,9 +32,25 @@ class DataFrame:
             for colonne, valeurs in zip(listColonnes, listlistVal):
                 series = Series(valeurs, colonne)
                 self.listSeries.append(series)
+                self.initTab(len(valeurs), len(listColonnes))
         else:
             print("Les listes ne sont pas de la même taille")
 
+    def initTab(self,nbrLigne,nbrCol):
+        print(nbrLigne)
+        print(nbrCol)
+        # initialise une dataframe de 0
+        self.tab = [[0] * nbrCol for _ in range(nbrLigne)]
+        # ajoute le nom des colonnes
+        for i in range(nbrCol - 1):
+            self.tab[0][i] = self.listSeries[i].name
+        # ajoute les valeurs à chaque colonne
+        for i in range(1, nbrLigne):
+            l = []
+            for y in range(nbrCol - 1):
+                l.append(self.listSeries[y].data[i - 1])
+            if i != nbrLigne:
+                self.tab[i] = l
     @property
     def _iloc(self):
         return self.iloc
@@ -68,7 +73,8 @@ class DataFrame:
     def __str__(self):
         printreturn = ("--- DATAFRAME --- \n")
         for line in self.tab:
-            printreturn+= "    [" + str(line[0]) + " " + str(line[1]) + "] \n"
+            for val in line:
+                printreturn+= "    [" + str(val) + " " + str(val) + "] \n"
         printreturn += ("--- FIN DATAFRAME ---")
         return  printreturn
 
