@@ -3,7 +3,6 @@ from Series import Series
 from Indexer import Indexer
 
 
-
 class DataFrame:
     def __init__(self, *args):
         self.iloc = Indexer(self)
@@ -14,13 +13,12 @@ class DataFrame:
         else:
             self.listSeries = []
 
-
     def from_list_series(self, listSeries):
         if len(listSeries) > 0:
             size = listSeries[0].size
             if all(series.size == size for series in listSeries):
                 self.listSeries = listSeries
-                self.initTab(size,len(listSeries))
+                self.initTab(size, len(listSeries))
             else:
                 print("Les listes ne sont pas de la même taille")
         else:
@@ -32,25 +30,24 @@ class DataFrame:
             for colonne, valeurs in zip(listColonnes, listlistVal):
                 series = Series(valeurs, colonne)
                 self.listSeries.append(series)
-                self.initTab(len(valeurs), len(listColonnes))
+            self.initTab(len(valeurs), len(listColonnes))
         else:
             print("Les listes ne sont pas de la même taille")
 
-    def initTab(self,nbrLigne,nbrCol):
-        print(nbrLigne)
-        print(nbrCol)
+    def initTab(self, nbrLigne, nbrCol):
         # initialise une dataframe de 0
         self.tab = [[0] * nbrCol for _ in range(nbrLigne)]
         # ajoute le nom des colonnes
-        for i in range(nbrCol - 1):
+        for i in range(nbrCol):
             self.tab[0][i] = self.listSeries[i].name
         # ajoute les valeurs à chaque colonne
         for i in range(1, nbrLigne):
             l = []
-            for y in range(nbrCol - 1):
+            for y in range(nbrCol):
                 l.append(self.listSeries[y].data[i - 1])
             if i != nbrLigne:
                 self.tab[i] = l
+
     @property
     def _iloc(self):
         return self.iloc
@@ -69,12 +66,12 @@ class DataFrame:
                 min = series.min()
         return min
 
-
     def __str__(self):
         printreturn = ("--- DATAFRAME --- \n")
         for line in self.tab:
+            printreturn += "   ["
             for val in line:
-                printreturn+= "    [" + str(val) + " " + str(val) + "] \n"
+                printreturn += str(val) + " "
+            printreturn += "] \n"
         printreturn += ("--- FIN DATAFRAME ---")
-        return  printreturn
-
+        return printreturn
