@@ -53,18 +53,42 @@ class DataFrame:
         return self.iloc
 
     def max(self):
-        max = self.listSeries[0].max()
+        max_list = []
         for series in self.listSeries:
-            if max <= series.max():
-                max = series.max()
-        return max
+            max_list.append(series.max())
+        max_series = Series(max_list, "Max")
+        return max_series
 
     def min(self):
-        min = self.listSeries[0].min()
+        min_list = []
         for series in self.listSeries:
-            if min >= series.min():
-                min = series.min()
-        return min
+            min_list.append(series.min())
+        min_series = Series(min_list, "Min")
+        return min_series
+
+    def mean(self):
+        mean_list = []
+        for series in self.listSeries:
+            mean_list.append(series.mean())
+        mean_series = Series(mean_list, "Mean")
+        return mean_series
+
+    def count(self):
+        count_list = []
+        for series in self.listSeries:
+            count_list.append(series.count())
+        count_series = Series(count_list, "Count")
+        return count_series
+
+    def std(self):
+        std_list = []
+        for series in self.listSeries:
+            std_list.append(series.std())
+        std_series = Series(std_list, "Count")
+        return std_series
+
+
+
 
     def __str__(self):
         printreturn = ("--- DATAFRAME --- \n")
