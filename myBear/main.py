@@ -55,7 +55,7 @@ if __name__ == '__main__':
     #print dataframe
     print(dataframe)
     # test iloc
-<<<<<<< HEAD
+
     dataframe.groupby(
         by=["a", "b"],
         agg={
@@ -63,7 +63,7 @@ if __name__ == '__main__':
             "d": max
         }
     )
-=======
+
     print(dataframe.iloc[1,0:2])
 
     #print dataframe mean
@@ -79,5 +79,4 @@ if __name__ == '__main__':
     #print json to dataframe
     dt = DataFrame.read_json("jsontest.json","")
     print(dt)
->>>>>>> 94dfcc8a80f3e0a4d3f24002d939f3e2ead9b055
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

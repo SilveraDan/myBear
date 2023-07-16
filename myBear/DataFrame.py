@@ -2,13 +2,10 @@ import csv
 from typing import List, Any
 from Series import Series
 from Indexer import Indexer
-<<<<<<< HEAD
 from collections import defaultdict
 from typing import Callable, Dict, Any, List
-=======
-import json
 
->>>>>>> 94dfcc8a80f3e0a4d3f24002d939f3e2ead9b055
+import json
 class DataFrame:
     def __init__(self, *args):
         self.iloc = Indexer(self)
@@ -140,7 +137,7 @@ class DataFrame:
             DataFrame: Un DataFrame contenant les données regroupées et agrégées.
         """
         if isinstance(by, str):
-            by = [by]
+            by = [by
 
         # Récupérer les colonnes utilisées pour le regroupement
         list_columns_to_group = [series for series in self.data if series.name in by]
