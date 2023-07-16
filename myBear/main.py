@@ -1,5 +1,6 @@
 # This is a sample Python script.
 
+
 # Press Maj+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 from Series import Series
@@ -54,6 +55,11 @@ if __name__ == '__main__':
     #print dataframe
     print(dataframe)
     # test iloc
-    print(dataframe.iloc[1,0:2])
-
+    dataframe.groupby(
+        by=["a", "b"],
+        agg={
+            "c": min,
+            "d": max
+        }
+    )
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
