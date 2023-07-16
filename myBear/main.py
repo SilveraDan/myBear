@@ -42,7 +42,7 @@ if __name__ == '__main__':
     print(f"test1 : {dataframe.listSeries[0].name}")
 
     #test2 DataFrame constructeur avec liste colonnes et valeur
-    dataframe = DataFrame(["col1", "col2"],[[1,2],[3,4]])
+    dataframe = DataFrame(["col1", "col2","col3"],[[1,2],[3,4],[1,2]])
     print(f"test1 : {dataframe.listSeries[0].name}")
 
     # max dataframe
@@ -62,4 +62,11 @@ if __name__ == '__main__':
     print("mean dataframe : ", dataframe.mean().data)
     print("mean of mean dataframe : ", dataframe.mean().mean())
 
+    #print csv to dataframe
+    dt = DataFrame.read_csv("testcsv.csv",",")
+    print(dt)
+
+    #print json to dataframe
+    dt = DataFrame.read_json("jsontest.json","")
+    print(dt)
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

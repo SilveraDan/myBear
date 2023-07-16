@@ -1,7 +1,8 @@
+import csv
 from typing import List, Any
 from Series import Series
 from Indexer import Indexer
-
+import json
 
 class DataFrame:
     def __init__(self, *args):
@@ -29,8 +30,9 @@ class DataFrame:
             self.listSeries = []
             for colonne, valeurs in zip(listColonnes, listlistVal):
                 series = Series(valeurs, colonne)
+                print(series.data)
                 self.listSeries.append(series)
-            self.initTab(len(valeurs), len(listColonnes))
+            self.initTab(len(valeurs) + 1, len(listColonnes))
         else:
             print("Les listes ne sont pas de la même taille")
 
@@ -47,7 +49,6 @@ class DataFrame:
                 l.append(self.listSeries[y].data[i - 1])
             if i != nbrLigne:
                 self.tab[i] = l
-
     @property
     def _iloc(self):
         return self.iloc
@@ -87,8 +88,30 @@ class DataFrame:
         std_series = Series(std_list, "Count")
         return std_series
 
+    def read_csv(path: str,delimiter: str = ","):
+        with open(path, 'r') as fichier:
+            lecteur = csv.reader(fichier)
+            colonnes = next(lecteur)
+            valeurs = [[] for _ in colonnes]
 
+            for ligne in lecteur:
+                for i, valeur in enumerate(ligne):
+                    valeurs[i].append(valeur)
 
+        return DataFrame(colonnes, valeurs)
+
+    def read_json(path: str, orient: str = "records"):
+        with open(path, 'r') as fichier:
+            data = json.load(fichier)
+
+            colonnes = list(data.keys())
+            valeurs = [[] for _ in colonnes]
+
+            for colonne, valeurs_dict in data.items():
+                for valeur in valeurs_dict.values():
+                    valeurs[colonnes.index(colonne)].append(valeur)
+
+        return DataFrame(colonnes, valeurs)
 
     def __str__(self):
         printreturn = ("--- DATAFRAME --- \n")
