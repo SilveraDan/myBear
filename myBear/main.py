@@ -43,7 +43,7 @@ if __name__ == '__main__':
     print(f"test1 : {dataframe.listSeries[0].name}")
 
     #test2 DataFrame constructeur avec liste colonnes et valeur
-    dataframe = DataFrame(["col1", "col2"],[[1,2],[3,4]])
+    dataframe = DataFrame(["col1", "col2","col3"],[[1,2],[3,4],[1,2]])
     print(f"test1 : {dataframe.listSeries[0].name}")
 
     # max dataframe
@@ -55,6 +55,7 @@ if __name__ == '__main__':
     #print dataframe
     print(dataframe)
     # test iloc
+<<<<<<< HEAD
     dataframe.groupby(
         by=["a", "b"],
         agg={
@@ -62,4 +63,21 @@ if __name__ == '__main__':
             "d": max
         }
     )
+=======
+    print(dataframe.iloc[1,0:2])
+
+    #print dataframe mean
+    print("mean serie[1] : ", dataframe.listSeries[0].data)
+    print("mean serie[1] : ", dataframe.listSeries[1].data)
+    print("mean dataframe : ", dataframe.mean().data)
+    print("mean of mean dataframe : ", dataframe.mean().mean())
+
+    #print csv to dataframe
+    dt = DataFrame.read_csv("testcsv.csv",",")
+    print(dt)
+
+    #print json to dataframe
+    dt = DataFrame.read_json("jsontest.json","")
+    print(dt)
+>>>>>>> 94dfcc8a80f3e0a4d3f24002d939f3e2ead9b055
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

@@ -1,8 +1,14 @@
+import csv
 from typing import List, Any
 from Series import Series
 from Indexer import Indexer
+<<<<<<< HEAD
 from collections import defaultdict
 from typing import Callable, Dict, Any, List
+=======
+import json
+
+>>>>>>> 94dfcc8a80f3e0a4d3f24002d939f3e2ead9b055
 class DataFrame:
     def __init__(self, *args):
         self.iloc = Indexer(self)
@@ -29,8 +35,9 @@ class DataFrame:
             self.listSeries = []
             for colonne, valeurs in zip(listColonnes, listlistVal):
                 series = Series(valeurs, colonne)
+                print(series.data)
                 self.listSeries.append(series)
-            self.initTab(len(valeurs), len(listColonnes))
+            self.initTab(len(valeurs) + 1, len(listColonnes))
         else:
             print("Les listes ne sont pas de la même taille")
 
@@ -47,24 +54,69 @@ class DataFrame:
                 l.append(self.listSeries[y].data[i - 1])
             if i != nbrLigne:
                 self.tab[i] = l
-
     @property
     def _iloc(self):
         return self.iloc
 
     def max(self):
-        max = self.listSeries[0].max()
+        max_list = []
         for series in self.listSeries:
-            if max <= series.max():
-                max = series.max()
-        return max
+            max_list.append(series.max())
+        max_series = Series(max_list, "Max")
+        return max_series
 
     def min(self):
-        min = self.listSeries[0].min()
+        min_list = []
         for series in self.listSeries:
-            if min >= series.min():
-                min = series.min()
-        return min
+            min_list.append(series.min())
+        min_series = Series(min_list, "Min")
+        return min_series
+
+    def mean(self):
+        mean_list = []
+        for series in self.listSeries:
+            mean_list.append(series.mean())
+        mean_series = Series(mean_list, "Mean")
+        return mean_series
+
+    def count(self):
+        count_list = []
+        for series in self.listSeries:
+            count_list.append(series.count())
+        count_series = Series(count_list, "Count")
+        return count_series
+
+    def std(self):
+        std_list = []
+        for series in self.listSeries:
+            std_list.append(series.std())
+        std_series = Series(std_list, "Count")
+        return std_series
+
+    def read_csv(path: str,delimiter: str = ","):
+        with open(path, 'r') as fichier:
+            lecteur = csv.reader(fichier)
+            colonnes = next(lecteur)
+            valeurs = [[] for _ in colonnes]
+
+            for ligne in lecteur:
+                for i, valeur in enumerate(ligne):
+                    valeurs[i].append(valeur)
+
+        return DataFrame(colonnes, valeurs)
+
+    def read_json(path: str, orient: str = "records"):
+        with open(path, 'r') as fichier:
+            data = json.load(fichier)
+
+            colonnes = list(data.keys())
+            valeurs = [[] for _ in colonnes]
+
+            for colonne, valeurs_dict in data.items():
+                for valeur in valeurs_dict.values():
+                    valeurs[colonnes.index(colonne)].append(valeur)
+
+        return DataFrame(colonnes, valeurs)
 
     def __str__(self):
         printreturn = ("--- DATAFRAME --- \n")
