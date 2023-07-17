@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import csv
 from typing import List, Any
 from Series import Series
@@ -32,7 +34,6 @@ class DataFrame:
             self.listSeries = []
             for colonne, valeurs in zip(listColonnes, listlistVal):
                 series = Series(valeurs, colonne)
-                print(series.data)
                 self.listSeries.append(series)
             self.initTab(len(valeurs) + 1, len(listColonnes))
         else:
@@ -137,12 +138,12 @@ class DataFrame:
             DataFrame: Un DataFrame contenant les données regroupées et agrégées.
         """
         if isinstance(by, str):
-            by = [by
+            by = [by]
 
         # Récupérer les colonnes utilisées pour le regroupement
-        list_columns_to_group = [series for series in self.data if series.name in by]
+        list_columns_to_group = [series for series in self.listSeries if series.name in by]
         # Récupérer les colonnes utilisées pour l'agrégation
-        columns_to_aggregate = [series for series in self.data if series.name not in by]
+        columns_to_aggregate = [series for series in self.listSeries if series.name not in by]
 
         list_columns_data = []
         # Récupérer les indices de groupe pour chaque combinaison de valeurs de colonnes de regroupement
