@@ -43,3 +43,6 @@ class Series:
 
     def filtered_data(self):
         return [x for x in self.data if x is not None]
+
+    def __str__(self):
+        return f"col : {self.name} , vals : {self.data}"

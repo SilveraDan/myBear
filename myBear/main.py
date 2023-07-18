@@ -67,8 +67,8 @@ if __name__ == '__main__':
     print(dataframe.iloc[1,0:2])
 
     #print dataframe mean
-    print("mean serie[1] : ", dataframe.listSeries[0].data)
-    print("mean serie[1] : ", dataframe.listSeries[1].data)
+    print("mean serie[1] : ", dataframe.listSeries[0])
+    print("mean serie[1] : ", dataframe.listSeries[1])
     print("mean dataframe : ", dataframe.mean().data)
     print("mean of mean dataframe : ", dataframe.mean().mean())
 
